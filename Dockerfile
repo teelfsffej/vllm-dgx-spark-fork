@@ -143,14 +143,8 @@ RUN if [ -n "$FLASHINFER_PRS" ]; then \
 # SM121 (GB10) lacks cvt.rn.satfinite.e2m1x2.f32 PTX instruction
 # Reference: https://github.com/Avarok-Cybersecurity/dgx-vllm
 COPY patches/build/flashinfer_e2m1_sm121.patch .
-RUN if [ -f flashinfer_e2m1_sm121.patch ]; then \
-        if patch -p0 --dry-run --reverse < flashinfer_e2m1_sm121.patch &>/dev/null; then \
-            echo "E2M1 SM121 CUTLASS patch already applied"; \
-        else \
-            echo "Applying E2M1 SM121 CUTLASS patch..." && \
-            patch -p0 < flashinfer_e2m1_sm121.patch; \
-        fi; \
-    fi
+RUN echo "Skipping E2M1 SM121 patch (file not applicable to this repo version)"
+
 
 # Fix TRT-LLM quantization_utils.cuh for SM121: add software E2M1 conversion
 # fallback ONLY in the low-level fp32_vec_to_e2m1 functions.
