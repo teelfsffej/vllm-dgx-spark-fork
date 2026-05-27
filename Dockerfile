@@ -144,11 +144,11 @@ RUN if [ -n "$FLASHINFER_PRS" ]; then \
 # Reference: https://github.com/Avarok-Cybersecurity/dgx-vllm
 COPY patches/build/flashinfer_e2m1_sm121.patch .
 RUN if [ -f flashinfer_e2m1_sm121.patch ]; then \
-        if patch -p1 --dry-run --reverse < flashinfer_e2m1_sm121.patch &>/dev/null; then \
+        if patch -p0 --dry-run --reverse < flashinfer_e2m1_sm121.patch &>/dev/null; then \
             echo "E2M1 SM121 CUTLASS patch already applied"; \
         else \
             echo "Applying E2M1 SM121 CUTLASS patch..." && \
-            patch -p1 < flashinfer_e2m1_sm121.patch; \
+            patch -p0 < flashinfer_e2m1_sm121.patch; \
         fi; \
     fi
 
