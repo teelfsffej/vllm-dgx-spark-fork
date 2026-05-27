@@ -1,0 +1,5 @@
+--- a/flashinfer/backend.py
++++ b/flashinfer/backend.py
+@@ -1,3 +1,3 @@
+-# Original content
++# SM121 guard added
